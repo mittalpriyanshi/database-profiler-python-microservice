@@ -1,0 +1,21 @@
+{
+  "name": "db-profiler",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Real-time PostgreSQL slow-query profiler with Gemini analysis",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check app.js && node --check config.js && node --check log-parser.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "node-sql-parser": "^5.3.12",
+    "pg": "^8.16.3",
+    "ws": "^8.18.3"
+  }
+}
