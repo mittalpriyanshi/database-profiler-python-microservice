@@ -79,6 +79,42 @@ function createApp({ pool, broadcast }) {
     return app;
 }
 
+function validateAiResponse(value) {
+    if (!value || typeof value !== 'object') {
+        throw new Error('AI service returned invalid JSON.');
+    }
+
+    const summary =
+        typeof value.summary === 'string'
+            ? value.summary.trim()
+            : '';
+
+    const optimizedQuery =
+        typeof value.optimized_query === 'string'
+            ? value.optimized_query.trim()
+            : '';
+
+    const recommendation = Array.isArray(value.recommendation)
+        ? value.recommendation.join('\n').trim()
+        : typeof value.recommendation === 'string'
+          ? value.recommendation.trim()
+          : '';
+
+    if (!summary || !recommendation || !optimizedQuery) {
+        throw new Error(
+            'AI service response is missing a required field.',
+        );
+    }
+
+    return {
+        summary,
+        recommendation,
+        optimizedQuery,
+    };
+}
+
+
+
 async function start() {
     let config;
 
