@@ -113,7 +113,24 @@ function validateAiResponse(value) {
     };
 }
 
+async function requestAiAnalysis(config, payload) {
+    const response = await fetch(config.aiServerUrl, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(config.aiTimeoutMs),
+    });
 
+    if (!response.ok) {
+        throw new Error(
+            `AI service returned HTTP ${response.status}.`,
+        );
+    }
+
+    return validateAiResponse(await response.json());
+}
 
 async function start() {
     let config;
