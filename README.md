@@ -156,7 +156,7 @@ Open `http://127.0.0.1:3000`. Do not open `index.html` directly.
 | `GEMINI_MODEL` | `gemini-3.5-flash` | Gemini model |
 | `GEMINI_TIMEOUT_SECONDS` | `40` | FastAPI-to-Gemini timeout |
 
-`POSTGRES_LOG_DIR` and `PASSWORD` remain accepted for compatibility with the older JavaScript version, but `PG_LOG_DIRECTORY` and `DB_PASSWORD` are preferred.
+`PG_LOG_DIRECTORY` and `DB_PASSWORD` are preferred.
 
 ## Quick checks
 
